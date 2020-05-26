@@ -1,6 +1,6 @@
 {
     "name": "dh/php-gus-client",
-    "description": "PHP Client library for G\u0000\u0000wny Urz\u0000d Statystyczny (Polish Central Statistical Office, known also as \"Statistics Poland\").",
+    "description": "PHP Client library for Główny Urząd Statystyczny (Polish Central Statistical Office, known also as \"Statistics Poland\").",
     "type": "library",
     "require": {
         "idct/soap-client": "0.2.2",

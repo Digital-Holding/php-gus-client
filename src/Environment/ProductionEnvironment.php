@@ -7,7 +7,7 @@ use DH\Gus\Exception\InvalidResponseException;
 class ProductionEnvironment implements EnvironmentInterface
 {
     const ENDPOINT = 'https://wyszukiwarkaregon.stat.gov.pl/wsBIR/UslugaBIRzewnPubl.svc';
-    const WSDL = 'https://wyszukiwarkaregon.stat.gov.pl/wsBIR/wsdl/UslugaBIRzewnPubl-ver11.wsdl';
+    const WSDL = 'https://wyszukiwarkaregon.stat.gov.pl/wsBIR/wsdl/UslugaBIRzewnPubl-ver11-prod.wsdl';
     private $loginKey;
 
     public function __construct($loginKey)

@@ -1,0 +1,24 @@
+{
+    "name": "dh/php-gus-client",
+    "description": "PHP Client library for G\u0000\u0000wny Urz\u0000d Statystyczny (Polish Central Statistical Office, known also as \"Statistics Poland\").",
+    "type": "library",
+    "require": {
+        "idct/soap-client": "0.2.2",
+        "myclabs/php-enum": "^1.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.1"
+    },
+    "license": "GPL3",
+    "authors": [
+        {
+            "name": "Bartosz Pachołek",
+            "email": "bartosz@idct.pl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "DH\\GUS\\": "src/"
+        }
+    }
+}

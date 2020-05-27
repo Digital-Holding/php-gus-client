@@ -23,7 +23,7 @@ class TestEnvironment implements EnvironmentInterface
         return self::WSDL;
     }
 
-    public function getIgnoreSsl()
+    public function getIgnoreSsl(): ?bool
     {
         return true;
     }

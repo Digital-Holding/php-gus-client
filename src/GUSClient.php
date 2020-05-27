@@ -20,11 +20,14 @@ class GUSClient
     protected $soapClient;
     protected $sessionId;
 
-    public function __construct(EnvironmentInterface $environment = null)
+    public function __construct(EnvironmentInterface $environment)
     {
-        if ($environment) {
-            $this->setEnvironment($environment);
-        }
+        $this->setEnvironment($environment);
+    }
+
+    public function setEnvironment(EnvironmentInterface $environment) : self
+    {
+        $this->environment = $environment;
 
         $options = [
             'soap_version' => SOAP_1_2,
@@ -39,11 +42,6 @@ class GUSClient
 
         $this->soapClient = $client;
         $this->headersBuilder = new SoapHeadersBuilder();
-    }
-
-    public function setEnvironment(EnvironmentInterface $environment) : self
-    {
-        $this->environment = $environment;
 
         return $this;
     }

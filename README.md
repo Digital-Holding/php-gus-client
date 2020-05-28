@@ -22,11 +22,11 @@ Thanks to the provided factories it is possible to use the library easily with S
 
 ```yaml
     dh.service.gusclient:
-        factory: ['DH\GUS\GUSClientFactory', createWithEnvironment]
+        factory: ['DH\GUS\GUSClientFactory', 'createWithEnvironment']
         class: DH\GUS\GUSClient
         arguments:
-            - "production"
-            - "your login key"
+            - 'production'
+            - 'your login key'
 ```
 
 Where first argument must be `production` or `test`. For `production` you need to provide your **login key** obtained from

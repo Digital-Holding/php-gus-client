@@ -7,9 +7,12 @@ use DH\GUS\Exception\AuthStateException;
 use DH\GUS\Exception\InvalidResponseException;
 use DH\GUS\Exception\SoapCallException;
 use DH\GUS\Handler\CompanyDetailsHandler;
+use DH\GUS\Handler\FullReportHandler;
+use DH\GUS\Handler\LastErrorHandler;
 use DH\GUS\Handler\LoginHandler;
 use DH\GUS\Handler\LogoutHandler;
 use DH\GUS\Handler\MethodHandlerInterface;
+use DH\GUS\Model\CompanyDetails;
 use Exception;
 use IDCT\Networking\Soap\Client;
 
@@ -72,6 +75,16 @@ class GUSClient
     public function getCompanyDetails($paramType, $paramValue)
     {
         return $this->handleMethod(new CompanyDetailsHandler($paramType, $paramValue));
+    }
+
+    public function getFulLReport($reportType, CompanyDetails $companyDetails)
+    {
+        return $this->handleMethod(new FullReportHandler($reportType, $companyDetails));
+    }
+
+    public function getLastError()
+    {
+        return $this->handleMethod(new LastErrorHandler());
     }
 
     protected function handleMethod(MethodHandlerInterface $method)

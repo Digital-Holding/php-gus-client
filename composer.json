@@ -3,6 +3,7 @@
     "description": "PHP Client library for Główny Urząd Statystyczny (Polish Central Statistical Office, known also as \"Statistics Poland\").",
     "type": "library",
     "require": {
+        "php": ">=7.1"
         "idct/soap-client": "0.2.2"
     },
     "require-dev": {

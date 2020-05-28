@@ -1,6 +1,6 @@
 <?php
 
-namespace DH\Gus\Exception;
+namespace DH\GUS\Exception;
 
 use Exception;
 

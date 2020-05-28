@@ -3,8 +3,8 @@
 namespace DH\GUS\Handler;
 
 use DH\GUS\Environment\EnvironmentInterface;
-use DH\Gus\Exception\AuthStateException;
-use DH\Gus\Exception\InvalidResponseException;
+use DH\GUS\Exception\AuthStateException;
+use DH\GUS\Exception\InvalidResponseException;
 
 class LoginHandler extends AbstractMethodHandler
 {

@@ -3,7 +3,7 @@
 namespace DH\GUS\Handler;
 
 use DH\GUS\CompanyIdType;
-use DH\Gus\Exception\InvalidResponseException;
+use DH\GUS\Exception\InvalidResponseException;
 use DH\GUS\Model\CompanyDetails;
 use InvalidArgumentException;
 

@@ -4,6 +4,6 @@ namespace DH\GUS\Exception;
 
 use Exception;
 
-class EnvironmentNotFoundException extends Exception
+class ReportTypeNotFoundException extends Exception
 {
 }

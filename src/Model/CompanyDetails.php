@@ -21,6 +21,7 @@ class CompanyDetails
         '6' => 'juridical_person_main_address',
         '1' => 'natural_person_main_address'
     ];
+
     protected $nip;
     protected $regon;
     protected $nipStatus;
@@ -86,6 +87,11 @@ class CompanyDetails
     public function getDistrict()
     {
         return $this->district;
+    }
+
+    public function getCity()
+    {
+        return $this->city;
     }
 
     public function getMunicipality()

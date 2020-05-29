@@ -12,8 +12,15 @@
     "license": "GPL3",
     "authors": [
         {
+            "name": "Digital Holding",
+            "email": "info@digitalholding.pl",
+            "homepage": "https://digitalholding.pl",
+            "role": "owner"
+        },
+        {
             "name": "Bartosz Pachołek",
-            "email": "bartosz@idct.pl"
+            "email": "bartosz.pacholek@digitalholding.pl",
+            "role": "lead"
         }
     ],
     "autoload": {

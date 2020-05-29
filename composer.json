@@ -1,5 +1,5 @@
 {
-    "name": "dh/php-gus-client",
+    "name": "digital-holding/php-gus-client",
     "description": "PHP Client library for Główny Urząd Statystyczny (Polish Central Statistical Office, known also as \"Statistics Poland\").",
     "type": "library",
     "require": {

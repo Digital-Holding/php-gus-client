@@ -3,6 +3,8 @@ php-gus-client
 
 PHP Client library for Główny Urząd Statystyczny (Polish Central Statistical Office, known also as "Statistics Poland").
 
+![Tests status](https://github.com/Digital-Holding/php-gus-client/workflows/Build/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/Digital-Holding/php-gus-client/badge.svg?branch=master)](https://coveralls.io/github/Digital-Holding/php-gus-client?branch=master
+
 Allows (fairly) easy interaction with the webservices of GUS which are described in detailed on their websites:
 <https://api.stat.gov.pl/Home/RegonApi>
 

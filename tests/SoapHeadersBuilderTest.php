@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace DH\GUS\Tests;
 
 use DH\GUS\Environment\EnvironmentInterface;
-use PHPUnit\Framework\TestCase;
 use DH\GUS\SoapHeadersBuilder;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use SoapHeader;
-use SoapParam;
 
 final class SoapHeadersBuilderTest extends TestCase
 {
@@ -54,12 +53,11 @@ final class SoapHeadersBuilderTest extends TestCase
 
         $envStub = $this->createMock(EnvironmentInterface::class);
         $soapHeadersBuilder = new SoapHeadersBuilder();
-        $soapHeadersBuilder->buildHeaders($envStub, 'a' . mt_rand(100,999) . time());
+        $soapHeadersBuilder->buildHeaders($envStub, 'a' . mt_rand(100, 999) . time());
     }
 
     protected function convertHeaderToArray(SoapHeader $value)
     {
         return json_decode(json_encode($value), true);
     }
-
 }

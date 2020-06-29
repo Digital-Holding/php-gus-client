@@ -6,6 +6,9 @@ use DH\GUS\Environment\EnvironmentFactory;
 
 class GUSClientFactory
 {
+    /**
+     * @codeCoverageIgnore
+     */
     protected function __construct()
     {
     }

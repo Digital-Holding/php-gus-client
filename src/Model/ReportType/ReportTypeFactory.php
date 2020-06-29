@@ -2,10 +2,13 @@
 
 namespace DH\GUS\Model\ReportType;
 
-use DH\Gus\Exception\ReportTypeNotFoundException;
+use DH\GUS\Exception\ReportTypeNotFoundException;
 
 class ReportTypeFactory
 {
+    /**
+     * @codeCoverageIgnore
+     */
     protected function __construct()
     {
     }

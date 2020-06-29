@@ -3,6 +3,7 @@
 namespace DH\GUS\Model;
 
 use DateTime;
+use DH\GUS\GUSClient;
 use SimpleXMLElement;
 
 class CompanyDetails
@@ -43,7 +44,7 @@ class CompanyDetails
     {
         $this->nip = $rawInputData->Nip ? preg_replace("/[^0-9]/", "", (string) $rawInputData->Nip) : null;
         $this->regon = $rawInputData->Regon ? preg_replace("/[^0-9]/", "", (string) $rawInputData->Regon) : null;
-        $this->nipStatus = $rawInputData->StatusNip ? (string) $rawInputData->StatusNip : null;
+        $this->nipStatus = isset($rawInputData->DataZakonczeniaDzialalnosci) && !empty($rawInputData->StatusNip) ? (string) $rawInputData->StatusNip : null;
         $this->name = $rawInputData->Nazwa ? (string) $rawInputData->Nazwa : null;
         $this->voivodeship = $rawInputData->Wojewodztwo ? (string) $rawInputData->Wojewodztwo : null;
         $this->district = $rawInputData->Powiat ? (string) $rawInputData->Powiat : null;
@@ -52,11 +53,11 @@ class CompanyDetails
         $this->postcode = $rawInputData->KodPocztowy ? (string) $rawInputData->KodPocztowy : null;
         $this->street = $rawInputData->Ulica ? (string) $rawInputData->Ulica : null;
         $this->houseNumber = $rawInputData->NrNieruchomosci ? (string) $rawInputData->NrNieruchomosci : null;
-        $this->flatNumber = $rawInputData->NrLokalu ? (string) $rawInputData->NrLokalu : null;
+        $this->flatNumber = isset($rawInputData->DataZakonczeniaDzialalnosci) && !empty($rawInputData->NrLokalu) ? (string) $rawInputData->NrLokalu : null;
         $this->type = $rawInputData->Typ ? (string) $rawInputData->Typ : null;
         $this->siloId = $rawInputData->SilosID ? (string) $rawInputData->SilosID : null;
-        $this->closedAt = isset($rawInputData->DataZakonczeniaDzialalnosci) && !empty($rawInputData->DataZakonczeniaDzialalnosci) ? new DateTime($rawInputData->DataZakonczeniaDzialalnosci) : null;
-        $this->postCity = $rawInputData->MiejscowoscPoczty ? (string) $rawInputData->MiejscowoscPoczty : null;
+        $this->closedAt = isset($rawInputData->DataZakonczeniaDzialalnosci) && !empty($rawInputData->DataZakonczeniaDzialalnosci) ? new DateTime($rawInputData->DataZakonczeniaDzialalnosci, GUSClient::getGusTimeZone()) : null;
+        $this->postCity = isset($rawInputData->MiejscowoscPoczty) && !empty($rawInputData->MiejscowoscPoczty) ? (string) $rawInputData->MiejscowoscPoczty : null;
     }
 
     public function getNip()

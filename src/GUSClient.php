@@ -2,6 +2,7 @@
 
 namespace DH\GUS;
 
+use DateTimeZone;
 use DH\GUS\Environment\EnvironmentInterface;
 use DH\GUS\Exception\AuthStateException;
 use DH\GUS\Exception\InvalidResponseException;
@@ -22,6 +23,8 @@ class GUSClient
     protected $environment;
     protected $soapClient;
     protected $sessionId;
+
+    protected static $gusTimeZone;
 
     public function __construct(EnvironmentInterface $environment)
     {
@@ -63,6 +66,15 @@ class GUSClient
         }
 
         return false;
+    }
+
+    public static function getGusTimeZone()
+    {
+        if (static::$gusTimeZone === null) {
+            static::$gusTimeZone = new DateTimeZone('Europe/Warsaw');
+        }
+
+        return static::$gusTimeZone;
     }
 
     public function login(): self

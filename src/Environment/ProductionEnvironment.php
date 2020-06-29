@@ -2,7 +2,7 @@
 
 namespace DH\GUS\Environment;
 
-use DH\Gus\Exception\InvalidResponseException;
+use InvalidArgumentException;
 
 class ProductionEnvironment implements EnvironmentInterface
 {
@@ -13,7 +13,7 @@ class ProductionEnvironment implements EnvironmentInterface
     public function __construct($loginKey)
     {
         if (empty($loginKey) || !is_string($loginKey)) {
-            throw new InvalidResponseException("Login key is required.", 1499);
+            throw new InvalidArgumentException("Login key is required.", 1499);
         }
 
         $this->loginKey = $loginKey;

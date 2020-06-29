@@ -2,10 +2,13 @@
 
 namespace DH\GUS\Environment;
 
-use DH\Gus\Exception\EnvironmentNotFoundException;
+use DH\GUS\Exception\EnvironmentNotFoundException;
 
 class EnvironmentFactory
 {
+    /**
+     * @codeCoverageIgnore
+     */
     protected function __construct()
     {
     }

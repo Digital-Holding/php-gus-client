@@ -24,12 +24,12 @@ class LastErrorHandler extends AbstractMethodHandler
         if (!isset($response->GetValueResult)) {
             throw new InvalidResponseException("Missing required attributes in the response.", 1502);
         }
+
+        return $this;
     }
 
     public function parseResponse($response)
     {
-        var_dump($response);
-
         return $response->GetValueResult;
     }
 }

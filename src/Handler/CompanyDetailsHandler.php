@@ -50,11 +50,13 @@ class CompanyDetailsHandler extends AbstractMethodHandler
         if (!isset($response->DaneSzukajPodmiotyResult)) {
             throw new InvalidResponseException("Missing required attributes in the response.", 1502);
         }
+
+        return $this;
     }
 
     public function parseResponse($response)
     {
-        $responseParsed = simplexml_load_string($response->DaneSzukajPodmiotyResult);
+        $responseParsed = @simplexml_load_string($response->DaneSzukajPodmiotyResult);
 
         if (!$responseParsed) {
             throw new InvalidResponseException("Failed to parse response.", 1510);
@@ -76,23 +78,33 @@ class CompanyDetailsHandler extends AbstractMethodHandler
         $values = [];
         if (!is_array($paramValue)) {
             $values[] = $paramValue;
+        } else {
+            $values = $paramValue;
+        }
+
+        if (empty($values)) {
+            throw new InvalidArgumentException('At least one value is required.');
+        }
+
+        if (count($values) > 20) {
+            throw new InvalidArgumentException('Maximum supported values count is 20.');
         }
 
         $previousLen = null;
         foreach ($values as $value) {
             switch ($paramType) {
                 case CompanyIdType::NIP:
-                    if (!preg_match('/[0-9]{10}/', $value)) {
+                    if (!preg_match('/^[0-9]{10}$/', $value)) {
                         throw new InvalidArgumentException("NIP must be a string of exactly 10 digits.", 1600);
                     }
                 break;
                 case CompanyIdType::KRS:
-                    if (!preg_match('/[0-9]{10}/', $value)) {
+                    if (!preg_match('/^[0-9]{10}$/', $value)) {
                         throw new InvalidArgumentException("KRS must be a string of exactly 10 digits.", 1600);
                     }
                 break;
                 case CompanyIdType::REGON:
-                    if (!preg_match('/[0-9]{9}([0-9]{5})?/', $value)) {
+                    if (!preg_match('/^[0-9]{9}([0-9]{5})?$/', $value)) {
                         throw new InvalidArgumentException("REGON must be a string of exactly 9 or 14 digits.", 1600);
                     }
 
@@ -107,7 +119,7 @@ class CompanyDetailsHandler extends AbstractMethodHandler
 
         if (!is_array($paramValue)) {
             return self::ID_TYPE_MAPPING_SINGLE[$paramType];
-        } elseif ($paramValue === CompanyIdType::REGON) {
+        } elseif ($paramType === CompanyIdType::REGON) {
             return self::ID_TYPE_MAPPING_PLURAL[$paramType . $previousLen];
         } else {
             return self::ID_TYPE_MAPPING_PLURAL[$paramType];

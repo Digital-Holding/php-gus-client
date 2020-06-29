@@ -30,6 +30,8 @@ class LogoutHandler extends AbstractMethodHandler
         if (!isset($response->WylogujResult)) {
             throw new InvalidResponseException("Missing required attributes in the response.", 1502);
         }
+
+        return $this;
     }
 
     public function parseResponse($response)

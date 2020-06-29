@@ -92,4 +92,4 @@ First argument must be a name of supported report type. Supported report types a
 * automatic login if session was expired
 * session re-use (session adapter)
 * phpDocs
-* unit tests
+* improved unit tests

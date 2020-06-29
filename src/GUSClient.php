@@ -19,6 +19,11 @@ use IDCT\Networking\Soap\Client;
 
 class GUSClient
 {
+    protected const SOAP_OPTIONS = [
+        'soap_version' => SOAP_1_2,
+        'trace' => true,
+        'style' => SOAP_DOCUMENT
+    ];
     protected $headersBuilder;
     protected $environment;
     protected $soapClient;
@@ -34,19 +39,7 @@ class GUSClient
     public function setEnvironment(EnvironmentInterface $environment) : self
     {
         $this->environment = $environment;
-
-        $options = [
-            'soap_version' => SOAP_1_2,
-            'trace' => true,
-            'style' => SOAP_DOCUMENT
-        ];
-
-        $client = new Client($environment->getWsdl(), $options, 30, 3, 30);
-        $client->setIgnoreCertVerify($environment->getIgnoreSsl())
-               ->__setLocation($environment->getEndpointUri())
-               ;
-
-        $this->soapClient = $client;
+        $this->soapClient = $this->createSoapClient($environment);
         $this->headersBuilder = new SoapHeadersBuilder();
 
         return $this;
@@ -89,7 +82,7 @@ class GUSClient
         return $this->handleMethod(new CompanyDetailsHandler($paramType, $paramValue));
     }
 
-    public function getFulLReport($reportType, CompanyDetails $companyDetails)
+    public function getFullReport($reportType, CompanyDetails $companyDetails)
     {
         return $this->handleMethod(new FullReportHandler($reportType, $companyDetails));
     }
@@ -97,6 +90,28 @@ class GUSClient
     public function getLastError()
     {
         return $this->handleMethod(new LastErrorHandler());
+    }
+
+    protected function getSoapOptions()
+    {
+        return $this::SOAP_OPTIONS;
+    }
+
+    protected function createSoapClient(EnvironmentInterface $environment)
+    {
+        $options = $this->getSoapOptions();
+        $wsdl = $environment->getWsdl();
+        $client = new Client($wsdl, $options, 30, 3, 30);
+        $client->setIgnoreCertVerify($environment->getIgnoreSsl())
+               ->__setLocation($environment->getEndpointUri())
+               ;
+
+        return $client;
+    }
+
+    protected function getHeadersBuilder()
+    {
+        return $this->headersBuilder;
     }
 
     protected function handleMethod(MethodHandlerInterface $method)
@@ -116,11 +131,13 @@ class GUSClient
         return $this->sessionId;
     }
 
-    protected function ensureSession(): void
+    protected function ensureSession(): self
     {
         if (!$this->getSessionId()) {
             throw new AuthStateException("Session id not set, please log in first.", 1500);
         }
+
+        return $this;
     }
 
     protected function getSoapClient(): Client
@@ -139,7 +156,7 @@ class GUSClient
 
         $client->setHeaders($headers);
 
-        $soapHeaders = $this->headersBuilder->buildHeaders($this->getEnvironment(), $method);
+        $soapHeaders = $this->getHeadersBuilder()->buildHeaders($this->getEnvironment(), $method);
         $client->__setSoapHeaders($soapHeaders);
 
         $response = null;

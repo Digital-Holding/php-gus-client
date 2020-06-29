@@ -2,7 +2,7 @@
 
 namespace DH\GUS\Model\ReportType;
 
-class AbstractReportType
+abstract class AbstractReportType
 {
     protected const NAME = 'not set';
     protected const SUPPORTED_TYPE = 'F';

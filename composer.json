@@ -28,7 +28,8 @@
     ],
     "scripts": {
         "test": "./vendor/bin/phpunit && ./vendor/bin/behat",
-        "fix": "./vendor/bin/php-cs-fixer fix --config=.php_cs tests src"
+        "fix": "./vendor/bin/php-cs-fixer fix --config=.php_cs tests src",
+        "generate-coveralls": "./vendor/php-coveralls/php-coveralls/bin/php-coveralls -v"
     },
     "autoload": {
         "psr-4": {
